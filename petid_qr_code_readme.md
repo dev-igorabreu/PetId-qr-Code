@@ -1,0 +1,3 @@
+# PetID QR Code
+
+Desenvolvido pelo Grupo 8 (Hugo Vieira, Igor de Abreu e João Victor Funis), o PetID QR Code é uma solução de impacto social criada para ajudar na identificação e localização de animais perdidos por meio de QR Codes personalizados. Ele é destinado a tutores de pets que desejam mais segurança e a pessoas solidárias que encontrarem um animal perdido na rua. O sistema será usado através de um QR Code impresso na coleira do pet que, ao ser escaneado com o celular, direciona o usuário para uma página com a foto, o nome do pet e as informações de contato do tutor para facilitar o reencontro.
