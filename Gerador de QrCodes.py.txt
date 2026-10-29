@@ -1,0 +1,31 @@
+import json
+import qrcode
+
+# 1. Carregar os dados do arquivo JSON
+try:
+    with open("dados.json", "r", encoding="utf-8") as arquivo_json:
+        dados = json.load(arquivo_json)
+except FileNotFoundError:
+    print("O arquivo dados.json não foi encontrado.")
+    dados = {}
+
+if dados:
+    # 2. Converter o dicionário Python para uma string JSON
+    # (Usamos ensure_ascii=False para manter acentuação correta)
+    conteudo_qr = json.dumps(dados, ensure_ascii=False, indent=2)
+
+    # 3. Gerar o QR Code
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_M,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(conteudo_qr)
+    qr.make(fit=True)
+
+    # 4. Criar a imagem e salvar em arquivo
+    imagem = qr.make_image(fill_color="black", back_color="white")
+    imagem.save("qrcode_dados.png")
+
+    print("QR Code gerado com sucesso e salvo como 'qrcode_dados.png'!")
