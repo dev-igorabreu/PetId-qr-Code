@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Pet & Tutor | Pet ID</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        header h2 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .grid-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        fieldset {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            background: #fafafa;
+        }
+
+        legend {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--primary);
+            padding: 0 8px;
+            background: var(--card-bg);
+            border-radius: 4px;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button:active {
+            transform: scale(0.99);
+        }
+
+        /* Responsividade para celulares (empilha as colunas se a tela for menor) */
+        @media (max-width: 768px) {
+            .grid-columns {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            body {
+                height: auto;
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h2>🐾 Pet ID - Segurança e Identificação</h2>
+            <p>Cadastre os dados para gerar o QR Code de contato rápido.</p>
+        </header>
+
+        <form action="/cadastrar" method="POST">
+            
+            <div class="grid-columns">
+                <!-- Coluna da Esquerda: Pet -->
+                <fieldset>
+                    <legend>Dados do Pet</legend>
+                    
+                    <div class="input-group">
+                        <label for="pet_nome">Nome do Pet</label>
+                        <input type="text" id="pet_nome" name="pet_nome" placeholder="Ex: Mel" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="pet_classe">Espécie</label>
+                        <input type="text" id="pet_classe" name="pet_classe" placeholder="Ex: Cão, Gato" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="pet_idade">Idade</label>
+                        <input type="text" id="pet_idade" name="pet_idade" placeholder="Ex: 2 anos" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="pet_sexo">Sexo</label>
+                        <select id="pet_sexo" name="pet_sexo">
+                            <option value="Macho">Macho</option>
+                            <option value="Fêmea">Fêmea</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="pet_hostil">Hostil com estranhos?</label>
+                        <select id="pet_hostil" name="pet_hostil">
+                            <option value="Não">Não (Amigável)</option>
+                            <option value="Sim">Sim (Arisco)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="pet_foto_url">URL da Foto</label>
+                        <input type="url" id="pet_foto_url" name="pet_foto_url" placeholder="https://...">
+                    </div>
+                </fieldset>
+
+                <!-- Coluna da Direita: Tutor -->
+                <fieldset>
+                    <legend>Dados do Tutor</legend>
+
+                    <div class="input-group">
+                        <label for="tutor_nome">Seu Nome</label>
+                        <input type="text" id="tutor_nome" name="tutor_nome" placeholder="Ex: Carlos Silva" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tutor_idade">Sua Idade</label>
+                        <input type="number" id="tutor_idade" name="tutor_idade" placeholder="Ex: 30" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tutor_telefone">Telefone / WhatsApp</label>
+                        <input type="tel" id="tutor_telefone" name="tutor_telefone" placeholder="(11) 99999-9999" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tutor_email">E-mail</label>
+                        <input type="email" id="tutor_email" name="tutor_email" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="input-group" style="margin-top: 50px;">
+                        <label for="tutor_foto_url">URL da sua Foto (Opcional)</label>
+                        <input type="url" id="tutor_foto_url" name="tutor_foto_url" placeholder="https://...">
+                    </div>
+                </fieldset>
+            </div>
+
+            <button type="submit">Cadastrar e Gerar QR Code</button>
+        </form>
+    </div>
+
+</body>
+</html>
